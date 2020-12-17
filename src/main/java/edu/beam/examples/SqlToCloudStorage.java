@@ -73,7 +73,7 @@ public class SqlToCloudStorage {
                 .apply(Create.of(cars)).setCoder(StringUtf8Coder.of())
                 .apply(Filter.greaterThan("200"))
                 .apply(ParDo.of(new PriceManager()))
-                .apply("WriteUsers", TextIO.write().to(options.getOutput()));
+                .apply("WriteCars", TextIO.write().to(options.getOutput()));
         p.run().waitUntilFinish();
     }
 }
